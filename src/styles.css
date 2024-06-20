@@ -1,0 +1,13 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  #Footer-Image{
+    height: 7rem;
+  }
+  @media screen and (max-width: 424px) {
+    .initial-alert {
+      text-align: left;
+    }
+  }
+  
