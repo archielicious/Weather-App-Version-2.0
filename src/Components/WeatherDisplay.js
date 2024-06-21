@@ -20,7 +20,7 @@ export default function WeatherDisplay({
       {/* <Card sx={{ width: "67%" }}> */}
       <Card sx={{ minWidth: "67%" }}>
         <CardContent>
-          <Stack direction="row" justifyContent="flex-start" spacing={2}>
+          <Stack direction="row" justifyContent="center" spacing={2}>
             <img
               src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
               alt={main}
