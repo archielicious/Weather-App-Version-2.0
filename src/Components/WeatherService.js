@@ -63,7 +63,7 @@ export default function WeatherService() {
   //   }, debounceTimeout);
   // };
 
-  // debouncing is to stop fetching the response between two consecutive keyborad clicks for some time to avoid resourceheaviness (here 7 miliseconds)
+  // debouncing is to stop fetching the response between two consecutive keyborad clicks for some time to avoid resourceheaviness (here 700 miliseconds)
   let debounceSearch = (e, debounceTimeout) => {
     if (debounceTimeout) {
       clearTimeout(debounceTimeout);
@@ -123,12 +123,14 @@ export default function WeatherService() {
           {/* storing the required fields in their respective variables */}
           <WeatherDisplay
             name={card.name}
+            country={card.sys.country}
             icon={card.weather[0].icon}
             main={card.weather[0].main}
             description={card.weather[0].description}
             temp_c={card.main.temp}
             wind_kph={card.wind.speed}
             humidity={card.main.humidity}
+            last_updated={card.dt}
           />
         </Stack>
       ) : // showing the intial alert for null errCode (which is there initially without searching for anything)
