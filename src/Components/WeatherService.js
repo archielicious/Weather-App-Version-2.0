@@ -78,7 +78,7 @@ export default function WeatherService() {
     <div className="App">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "salmon" }}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom sx={{ color: "linen" }}>
             Weather App
           </Typography>
         </AppBar>
