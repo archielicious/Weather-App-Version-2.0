@@ -22,6 +22,7 @@ export default function WeatherDisplay({
   let date = new Date(last_updated * 1000);
   // options are used to format the date, month and year into numeric or string values. Here we are using numeric values for day and year and string value for month
   let options = { day: "numeric", month: "long", year: "numeric" };
+  // below is the method for converting the fetched wind degrees to corresponding wind direction
   let cardinalDirections = [
     "N",
     "NNE",
