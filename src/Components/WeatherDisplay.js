@@ -72,7 +72,7 @@ export default function WeatherDisplay({
               gutterBottom
               sx={{
                 borderLeft: "2px solid salmon",
-                paddingLeft: "1.5rem",
+                paddingLeft: "1.65rem",
               }}
             >
               {temp_c.toFixed(1)}&#176;C
