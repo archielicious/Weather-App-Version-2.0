@@ -126,13 +126,13 @@ export default function WeatherService() {
             country={card.sys.country}
             feels_like={card.main.feels_like}
             clouds={card.clouds.all}
+            humidity={card.main.humidity}
             icon={card.weather[0].icon}
             main={card.weather[0].main}
             description={card.weather[0].description}
             temp_c={card.main.temp}
             wind_kph={card.wind.speed}
             wind_degree={card.wind.deg}
-            humidity={card.main.humidity}
             last_updated={card.dt}
           />
         </Stack>
