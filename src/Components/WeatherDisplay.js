@@ -23,6 +23,9 @@ export default function WeatherDisplay({
   // options are used to format the date, month and year into numeric or string values. Here we are using numeric values for day and year and string value for month
   let options = { day: "numeric", month: "long", year: "numeric" };
   // below is the method for converting the fetched wind degrees to corresponding wind direction
+  // since there are 16 cardinal directions in the compass each direction would consist 22.5 degrees
+  // so for getting the direction from the degees we will divide the given degees by 22.5 and take its floor value to correctly get its corresponding indexed direction
+  // we will do modulus 16 to the result so that if the degrees exceed 359.9 and become 360, instead of getting undefined as the direction, the index will start again from 0 means it will start from N again
   let cardinalDirections = [
     "N",
     "NNE",
@@ -42,7 +45,7 @@ export default function WeatherDisplay({
     "NNW",
   ];
 
-  const index = Math.floor(wind_degree / 22.5);
+  const index = Math.floor(wind_degree / 22.5) % 16;
   let wind_direction = cardinalDirections[index];
   return (
     <>
