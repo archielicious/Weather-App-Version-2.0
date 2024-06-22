@@ -2,8 +2,8 @@
     font-family: sans-serif;
     text-align: center;
   }
-  #root > div > div > div.MuiStack-root.css-o7paz3-MuiStack-root > div > div{
-    padding-bottom: 0.375rem;
+  .css-46bh2p-MuiCardContent-root:last-child {
+    padding-bottom: 0.375rem !important;
   }
   #Footer-Image{
     height: 7rem;
