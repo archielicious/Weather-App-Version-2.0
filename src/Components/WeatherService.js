@@ -28,7 +28,7 @@ export default function WeatherService() {
       let res = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${key}&units=metric`
       );
-      // storing the api response in a state variable named card and setting the error code to 0 for a fulfilled promise
+      // storing the api response in a state variable named card and setting the error code to 0 and error message to success for a fulfilled promise
       setCard(res.data);
       setErrCode(0);
       setError("Success");
