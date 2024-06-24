@@ -31,25 +31,33 @@ export default function WeatherService() {
       // storing the api response in a state variable named card and setting the error code to 0 for a fulfilled promise
       setCard(res.data);
       setErrCode(0);
+      setError("Success");
     } catch (err) {
       // setting the card variable to null for any status except fulfilled
       setCard("");
-      // consoloing the err response and for different status codes and setting the errorCodes and errorMessages respectively
-      console.log("33", err.response);
-      if (err.response && err.response.status === 404) {
+      // consoling the err response object and for different status codes setting the errorCodes and errorMessages respectively
+      // console.log("33", err.response);
+      if (
+        err.response &&
+        (err.response.status === 404 || err.response.status === 400)
+      ) {
         setError(err.response.data.message);
         setErrCode(err.response.data.cod);
-        // enqueueSnackbar(err.response.data.message, { variant: "error" });
-      } else if (err.response && err.response.status === 400) {
-        setErrCode(err.response.data.cod);
-        setError(err.response.data.message);
-        // enqueueSnackbar(err.response.data.message, { variant: "error" });
       }
+      // if (err.response && err.response.status === 404) {
+      //   setError(err.response.data.message);
+      //   setErrCode(err.response.data.cod);
+      //   // enqueueSnackbar(err.response.data.message, { variant: "error" });
+      // } else if (err.response && err.response.status === 400) {
+      //   setErrCode(err.response.data.cod);
+      //   setError(err.response.data.message);
+      //   // enqueueSnackbar(err.response.data.message, { variant: "error" });
+      // }
     }
     // after getting a response setting the loading to false for hiding the loading icon
     setLoading(false);
   };
-  // consoling the response object, error codes, error messages
+  // consoling the error codes, error messages for different user inputs along with the weather card array if the promise is fulfilled
   console.log("55 Error Code", errCode);
   console.log("48 Error Message", error);
   console.log("40 Card Array", card);
