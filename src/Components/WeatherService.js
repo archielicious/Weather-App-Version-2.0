@@ -141,6 +141,7 @@ export default function WeatherService() {
             wind_kph={card.wind.speed}
             wind_degree={card.wind.deg}
             humidity={card.main.humidity}
+            timezone={card.timezone}
             last_updated={card.dt}
           />
         </Stack>

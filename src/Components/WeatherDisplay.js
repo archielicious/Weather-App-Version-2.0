@@ -16,10 +16,13 @@ export default function WeatherDisplay({
   wind_kph,
   wind_degree,
   humidity,
+  timezone,
   last_updated,
 }) {
   // here we are converting the unix timestamp (fetched from the api endpoint) to javascript timestamp by multiplying 1000, then we are getting the current date by using the new Date(javascript timestamp) method
-  let date = new Date(last_updated * 1000);
+  // we are subtracting 19800 (GMT+ 5:30 in seconds) to set the last_updated unix seconds to GMT+ 0:00
+  // then we are adding the shift in seconds (represented by timezone in the api) to the above result to get the timestamp in the searched city's timezone
+  let date = new Date((last_updated - 19800 + timezone) * 1000);
   // options are used to format the date, month and year into numeric or string values. Here we are using numeric values for day and year and string value for month
   let options = { day: "numeric", month: "long", year: "numeric" };
   // below is the method for converting the fetched wind degrees to corresponding wind direction, it is the standard comapss rose convention, which refers any degrees from  0 degrees to 22.5 as N, 22.5 degrees to 45 as NNE and so on
