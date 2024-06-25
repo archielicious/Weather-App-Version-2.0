@@ -20,9 +20,16 @@ export default function WeatherDisplay({
   last_updated,
 }) {
   // here we are converting the unix timestamp (fetched from the api endpoint) to javascript timestamp by multiplying 1000, then we are getting the current date by using the new Date(javascript timestamp) method
-  // we are subtracting 19800 (GMT+ 5:30 in seconds) to set the last_updated unix seconds to GMT+ 0:00
-  // then we are adding the shift in seconds (represented by timezone in the api) to the above result to get the timestamp in the searched city's timezone
-  let date = new Date((last_updated - 19800 + timezone) * 1000);
+  // the last_updated is the timestamp of the local time zone of the host system in which the browser is being run
+  // to go to the GMT+ 0:00 timestamp, we need to adjust the difference of the local time zone in seconds from the last_updated
+  // in javascript getTimezoneOffset() is a method which gives the difference between GMT+ 0:00 and the local time zone in minutes
+  // here  we are getting the difference between the GMT+ 0:00 timestamp and local timezone timestamp in seconds by multiplying 60 with the resulted timezoneOffset
+  // then we are adding the resulted timezoneOffset_in_seconds and shift in seconds (represented by timezone in the api) to last_updated to get the timestamp in the searched city's timezone
+  let timezoneOffset_in_seconds =
+    new Date(last_updated * 1000).getTimezoneOffset() * 60;
+  let date = new Date(
+    (last_updated + timezoneOffset_in_seconds + timezone) * 1000
+  );
   // options are used to format the date, month and year into numeric or string values. Here we are using numeric values for day and year and string value for month
   let options = { day: "numeric", month: "long", year: "numeric" };
   // below is the method for converting the fetched wind degrees to corresponding wind direction, it is the standard comapss rose convention, which refers any degrees from  0 degrees to 22.5 as N, 22.5 degrees to 45 as NNE and so on
