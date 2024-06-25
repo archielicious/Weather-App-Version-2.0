@@ -20,10 +20,11 @@ export default function WeatherDisplay({
   last_updated,
 }) {
   // here we are converting the unix timestamp (fetched from the api endpoint) to javascript timestamp by multiplying 1000, then we are getting the current date by using the new Date(javascript timestamp) method
-  // the last_updated is the timestamp of the local time zone of the host system in which the browser is being run
-  // to go to the GMT+ 0:00 timestamp, we need to adjust the difference of the local time zone in seconds from the last_updated
+  // here last_updated is the timestamp of GMT+ 0:00
+  // when we use newDate(last_updated) it will give us the current date and time of the local timezone of the host system in which the website is being run
+  // to go to the GMT+ 0:00 date and time, we need to adjust the difference of the local time zone in seconds from the resulted date and time from new Date(last_updated)
   // in javascript getTimezoneOffset() is a method which gives the difference between GMT+ 0:00 and the local time zone in minutes
-  // here  we are getting the difference between the GMT+ 0:00 timestamp and local timezone timestamp in seconds by multiplying 60 with the resulted timezoneOffset
+  // here  we are getting the difference between the date and time of GMT+ 0:00 and local timezone in seconds by multiplying 60 with the resulted timezoneOffset
   // then we are adding the resulted timezoneOffset_in_seconds and shift in seconds (represented by timezone in the api) to last_updated to get the timestamp in the searched city's timezone
   let timezoneOffset_in_seconds =
     new Date(last_updated * 1000).getTimezoneOffset() * 60;
